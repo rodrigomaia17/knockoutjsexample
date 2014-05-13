@@ -7,9 +7,11 @@ function Pessoa(root){
 	self.id = ko.observable(root.id || ++idCounter);
 	self.nome = ko.observable(root.nome || "");
 	self.sobrenome = ko.observable(root.sobrenome || "");
-	self.nomeCompleto = ko.computed(function(){
-		return self.nome() + " " + self.sobrenome();
+	
+	self.nomeCompleto = ko.computed(function() {
+		return self.nome() + ' '+ self.sobrenome();
 	});
+
 }
 
 function KnockoutExampleModel(){
@@ -26,6 +28,12 @@ function KnockoutExampleModel(){
 	self.addFromCombo = function(){
 		self.listaPessoas.push(self.comboPessoaSelecionada());
 	};
+	
+	self.addFromForm = function(){
+		self.comboPessoas.push({ nome: self.nomeForm() , sobrenome: self.sobrenomeForm()});
+		self.nomeForm('');
+		self.sobrenomeForm('');
+	};
 }
 
 
@@ -36,9 +44,9 @@ $(function(){
 
 	var pessoas = [
 		new Pessoa({nome: "Rodrigo",sobrenome: "Maia"}),
-		new Pessoa({nome: "Diogo",sobrenome: "Capeta"}),
-		new Pessoa({nome: "Rasta",sobrenome: "Vlw Ae"}),
-		new Pessoa({nome: "Porra,",sobrenome: "Jorn?"})
+		new Pessoa({nome: "Pessoa1",sobrenome: "sobrenome2"}),
+		new Pessoa({nome: "Pessoa3",sobrenome: "sobrenome3"}),
+		
 
 	];
 
@@ -48,5 +56,5 @@ $(function(){
 
 });
 
-//TAREFAS : 1 - Mostrar o nome completo ao inves do primeiro nome 
+
 // 2 - criar um form para adicionar manualmente

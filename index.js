@@ -57,4 +57,3 @@ $(function(){
 });
 
 
-// 2 - criar um form para adicionar manualmente
